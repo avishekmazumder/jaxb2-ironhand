@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<xs:schema
+
+                      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                      elementFormDefault="unqualified">
+        <xs:include schemaLocation="CommonTypes.xsd"/>
+        <xs:complexType name="CustomerType">
+                <xs:sequence>
+                        <xs:element name="Name" type="xs:string" />
+                        <xs:element name="DeliveryAddress" type="AddressType" />
+                        <xs:element name="BillingAddress" type="AddressType" />
+                </xs:sequence>
+        </xs:complexType>
+</xs:schema>

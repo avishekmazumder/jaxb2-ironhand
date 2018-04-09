@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>jaxb2-ironhand</artifactId>
+        <groupId>org.avi</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>org.avi.common</groupId>
+    <artifactId>jaxb2-ironhand-common</artifactId>
+    <version>1.0</version>
+
+    <packaging>jar</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <episode>true</episode>
+                            <schemaDirectory>src/main/resources/ironhand-xsd-1.0</schemaDirectory>
+                            <schemaIncludes>
+                                <include>CommonTypes.xsd</include>
+                            </schemaIncludes>
+                            <generateDirectory>src/main/java</generateDirectory>
+                            <generatePackage>org.avi.ironhand.common</generatePackage>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.3</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+<!--                    <basedir>${project.build.directory}/jaxb2-ironhand-common</basedir>
+                    <file>${project.basedir}/src/main/java/META-INF/sun-jaxb.episode</file>-->
+                    <filesToInclude>
+                        ${project.basedir}/src/main/java/META-INF/sun-jaxb.episode,cd${project.basedir}/target/classes/META-INF/sun-jaxb.episode
+                    </filesToInclude>
+                    <replacements>
+                        <replacement>
+                            <token>map="false"</token>
+                            <value>map="true"</value>
+                        </replacement>
+                    </replacements>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

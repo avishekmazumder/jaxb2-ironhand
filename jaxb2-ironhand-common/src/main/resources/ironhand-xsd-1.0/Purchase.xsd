@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="unqualified">
+<!--        <xs:import schemaLocation="CommonTypes.xsd" namespace="ironhand:urn:CommonTypes" />
+        <xs:import schemaLocation="CustomerTypes.xsd" namespace="ironhand:urn:CustomerTypes" />
+        <xs:import schemaLocation="OrderTypes.xsd" namespace="ironhand:urn:OrderTypes" />-->
+
+        <xs:include schemaLocation="CommonTypes.xsd"/>
+        <xs:include schemaLocation="CustomerTypes.xsd"/>
+        <xs:include schemaLocation="OrderTypes.xsd"/>
+
+        <xs:element name="Purchase">
+                <xs:complexType>
+                        <xs:sequence>
+                                <xs:element name="OrderDetail" type="OrderType" />
+                                <xs:element name="PaymentMethod" type="PaymentMethodType" />
+                                <xs:element name="CustomerDetails" type="CustomerType" />
+                        </xs:sequence>
+                </xs:complexType>
+        </xs:element>
+        <!--<xs:element name="CustomerDetails" type="CustomerType" />-->
+</xs:schema>

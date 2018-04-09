@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jaxb2-ironhand</artifactId>
+        <groupId>org.avi</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.avi.purchase</groupId>
+    <artifactId>jaxb2-ironhand-purchase</artifactId>
+    <version>1.0</version>
+
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>org.avi.common</groupId>
+            <artifactId>jaxb2-ironhand-common</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <forceRegenerate>true</forceRegenerate>
+                            <schemaDirectory>src/main/resources/ironhand-xsd-1.0</schemaDirectory>
+                            <schemaIncludes>
+                                <include>Purchase.xsd</include>
+                            </schemaIncludes>
+                            <generateDirectory>src/main/java</generateDirectory>
+                            <generatePackage>org.avi.ironhand.purchase</generatePackage>
+                            <extension>true</extension>
+                            <episodes>
+                                <episode>
+                                    <groupId>org.avi.common</groupId>
+                                    <artifactId>jaxb2-ironhand-common</artifactId>
+                                    <!-- Version is not required if the artifact is
+                                        configured as dependency -->
+                                </episode>
+                                <!--<useDependenciesAsEpisodes>true</useDependenciesAsEpisodes>-->
+                            </episodes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
